@@ -9,6 +9,7 @@
     <meta property="og:description" content="AI research and privacy-first software. Multi-agent systems, knowledge graphs, MCP infrastructure, and macOS apps that run locally and cost once.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://peaksummitlabs.com">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -35,8 +36,8 @@
         nav.scrolled{border-bottom-color:var(--border)}
         .nav-inner{max-width:1100px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between}
         .logo{font-weight:700;font-size:1.1rem;display:flex;align-items:center;gap:10px;letter-spacing:-0.02em}
-        .logo-mark{width:32px;height:32px;border-radius:6px;overflow:hidden}
-        .logo-mark img{width:100%;height:100%;object-fit:contain}
+        .logo-mark{width:32px;height:32px}
+        .logo-mark svg{width:100%;height:100%}
         .nav-links{display:flex;align-items:center;gap:24px}
         .nav-link{color:var(--text2);font-size:0.875rem;font-weight:500;transition:color 0.2s}
         .nav-link:hover{color:var(--text)}
@@ -44,8 +45,8 @@
         /* ---- HERO ---- */
         .hero{padding:160px 0 80px;text-align:center;position:relative;overflow:hidden}
         .hero::before{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:800px;height:800px;background:radial-gradient(circle,var(--accent-glow) 0%,transparent 70%);pointer-events:none}
-        .hero-logo{width:72px;height:72px;margin:0 auto 24px}
-        .hero-logo img{width:100%;height:100%;object-fit:contain}
+        .hero-logo{width:120px;height:120px;margin:0 auto 28px}
+        .hero-logo svg{width:100%;height:100%}
         .hero h1{font-size:3.2rem;font-weight:800;letter-spacing:-0.03em;line-height:1.1;margin-bottom:16px}
         .hero h1 span{background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
         .hero-sub{font-size:1.15rem;color:var(--text2);max-width:580px;margin:0 auto 12px;line-height:1.7}
@@ -155,7 +156,7 @@
     <nav id="nav">
         <div class="nav-inner">
             <a href="/" class="logo">
-                <div class="logo-mark"><img src="psl-logo.png" alt="Peak Summit Labs"></div>
+                <div class="logo-mark"><svg viewBox="0 0 200 200" fill="none"><polygon points="100,18 180,172 20,172" stroke="#0ea5e9" stroke-width="8" stroke-linejoin="round" fill="none"/><polygon points="100,62 140,142 60,142" fill="#1a2332" stroke="#2a3a4e" stroke-width="2" stroke-linejoin="round"/><polygon points="100,88 118,122 82,122" fill="#0ea5e9" opacity="0.35" stroke="#0ea5e9" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
                 Peak Summit Labs
             </a>
             <div class="nav-links">
@@ -170,7 +171,7 @@
     <!-- HERO -->
     <section class="hero">
         <div class="container">
-            <div class="hero-logo"><img src="psl-logo.png" alt="Peak Summit Labs"></div>
+            <div class="hero-logo"><svg viewBox="0 0 200 200" fill="none"><polygon points="100,18 180,172 20,172" stroke="#0ea5e9" stroke-width="8" stroke-linejoin="round" fill="none"/><polygon points="100,62 140,142 60,142" fill="#1a2332" stroke="#2a3a4e" stroke-width="2" stroke-linejoin="round"/><polygon points="100,88 118,122 82,122" fill="#0ea5e9" opacity="0.35" stroke="#0ea5e9" stroke-width="1.5" stroke-linejoin="round"/><defs><linearGradient id="glow" x1="100" y1="18" x2="100" y2="172" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#0ea5e9" stop-opacity="0.6"/><stop offset="100%" stop-color="#0ea5e9" stop-opacity="0"/></linearGradient></defs><polygon points="100,18 180,172 20,172" stroke="url(#glow)" stroke-width="2" stroke-linejoin="round" fill="none"/></svg></div>
             <h1>Research that <span>ships.</span></h1>
             <p class="hero-sub">We build AI infrastructure and privacy-first software. Our research becomes products. Our products validate our research. One flywheel.</p>
             <p class="hero-founder">Founded by <a href="https://myronkoch.dev" target="_blank">Myron Koch</a> - independent AI researcher, former AI Director, guest lecturer at Harvard, MIT, Princeton, Cornell Tech, NYU, and Oxford.</p>
@@ -285,11 +286,11 @@
             <p class="section-desc">Building the infrastructure that makes AI agents work. Publishing what we learn.</p>
 
             <div class="research-grid">
-                <div class="research-card">
+                <a href="https://huggingface.co/datasets/myronkoch/reminisce-longmemeval-results/blob/main/paper/reminisce.pdf" class="research-card" target="_blank">
                     <h3>Reminisce: Episodic Memory for LLM Agents</h3>
                     <p>Architecture for persistent agent memory using keyword ranking and semantic consolidation. PostgreSQL + pgvector.</p>
                     <span class="stat">98.3% precision on LongMemEvalS - Hugging Face 2026</span>
-                </div>
+                </a>
                 <!-- Additional papers in progress - will be added when published -->
                 <a href="https://bmcps.dev" class="research-card" target="_blank">
                     <h3>BMCPS v3.0 Standard</h3>
