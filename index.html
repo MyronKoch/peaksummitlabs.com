@@ -3,34 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Peak Summit Labs - Software that respects you</title>
-    <meta name="description" content="Peak Summit Labs builds privacy-first software tools. Our apps run locally, cost once, and never phone home.">
-    <meta property="og:title" content="Peak Summit Labs - Software that respects you">
-    <meta property="og:description" content="Privacy-first software tools. Local processing, one-time pricing, no telemetry.">
+    <title>Peak Summit Labs - Research that ships</title>
+    <meta name="description" content="Peak Summit Labs builds AI research and privacy-first software. Multi-agent systems, knowledge graphs, MCP standards, and macOS apps. Research arm + product arm. Founded by Myron Koch.">
+    <meta property="og:title" content="Peak Summit Labs - Research that ships">
+    <meta property="og:description" content="AI research and privacy-first software. Multi-agent systems, knowledge graphs, MCP infrastructure, and macOS apps that run locally and cost once.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://peaksummitlabs.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         *{margin:0;padding:0;box-sizing:border-box}
         :root{
             --bg:#09090b;--bg2:#111113;--bg3:#18181b;
             --text:#f4f4f5;--text2:#a1a1aa;--text3:#52525b;
+            --accent:#3b82f6;--accent2:#60a5fa;--accent-glow:rgba(59,130,246,0.15);
             --border:rgba(255,255,255,0.06);
             --glass:rgba(255,255,255,0.03);
-            --radius:16px;
         }
         html{scroll-behavior:smooth}
         body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
         a{color:inherit;text-decoration:none}
+        .container{max-width:1100px;margin:0 auto;padding:0 24px;position:relative}
 
         /* ---- MOUNTAINS ---- */
         .mountains{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;pointer-events:none}
         .mountains svg{width:100%;height:100%;display:block}
 
         /* ---- NAV ---- */
-        nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 0;background:rgba(9,9,11,0.8);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid transparent;transition:border-color 0.3s}
+        nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 0;background:rgba(9,9,11,0.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid transparent;transition:border-color 0.3s}
         nav.scrolled{border-bottom-color:var(--border)}
         .nav-inner{max-width:1100px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between}
         .logo{font-weight:700;font-size:1.1rem;display:flex;align-items:center;gap:10px;letter-spacing:-0.02em}
@@ -41,38 +42,81 @@
         .nav-link:hover{color:var(--text)}
 
         /* ---- HERO ---- */
-        .hero{padding:160px 0 100px;text-align:center;position:relative;overflow:hidden}
-        .hero::before{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:800px;height:800px;background:radial-gradient(circle,rgba(99,102,241,0.08) 0%,transparent 70%);pointer-events:none}
-        .container{max-width:1100px;margin:0 auto;padding:0 24px;position:relative}
-        .hero-logo{width:80px;height:80px;margin:0 auto 28px}
+        .hero{padding:160px 0 80px;text-align:center;position:relative;overflow:hidden}
+        .hero::before{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:800px;height:800px;background:radial-gradient(circle,var(--accent-glow) 0%,transparent 70%);pointer-events:none}
+        .hero-logo{width:72px;height:72px;margin:0 auto 24px}
         .hero-logo img{width:100%;height:100%;object-fit:contain}
-        .hero h1{font-size:3.5rem;font-weight:800;letter-spacing:-0.03em;line-height:1.1;margin-bottom:20px}
-        .hero h1 span{background:linear-gradient(135deg,#6366f1,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-        .hero-sub{font-size:1.2rem;color:var(--text2);max-width:560px;margin:0 auto 16px;line-height:1.6}
-        .hero-values{display:flex;justify-content:center;gap:32px;margin-top:32px;flex-wrap:wrap}
-        .hero-value{display:flex;align-items:center;gap:8px;color:var(--text2);font-size:0.9rem;font-weight:500}
-        .hero-value svg{width:18px;height:18px;stroke:#6366f1;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+        .hero h1{font-size:3.2rem;font-weight:800;letter-spacing:-0.03em;line-height:1.1;margin-bottom:16px}
+        .hero h1 span{background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        .hero-sub{font-size:1.15rem;color:var(--text2);max-width:580px;margin:0 auto 12px;line-height:1.7}
+        .hero-founder{font-size:0.9rem;color:var(--text3);margin-bottom:32px}
+        .hero-founder a{color:var(--accent);font-weight:500}
+        .hero-founder a:hover{text-decoration:underline}
+        .hero-pills{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+        .pill{display:flex;align-items:center;gap:6px;padding:8px 16px;background:var(--glass);border:1px solid var(--border);border-radius:20px;font-size:0.85rem;color:var(--text2);font-weight:500}
+        .pill svg{width:16px;height:16px;stroke:var(--accent);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 
-        /* ---- APPS SECTION ---- */
-        .apps{padding:80px 0 120px}
-        .section-label{font-size:0.8rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#6366f1;margin-bottom:12px}
-        .section-title{font-size:2.2rem;font-weight:800;letter-spacing:-0.03em;margin-bottom:48px}
+        /* ---- DUAL ARM ---- */
+        .dual{padding:64px 0 80px}
+        .dual-header{text-align:center;margin-bottom:48px}
+        .dual-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+        .arm{background:var(--glass);border:1px solid var(--border);border-radius:20px;padding:40px;transition:border-color 0.3s}
+        .arm:hover{border-color:rgba(59,130,246,0.2)}
+        .arm-icon{font-size:1.5rem;margin-bottom:12px}
+        .arm h3{font-size:1.3rem;font-weight:700;margin-bottom:8px;letter-spacing:-0.02em}
+        .arm p{color:var(--text2);font-size:0.95rem;margin-bottom:20px;line-height:1.6}
+        .arm-list{list-style:none;display:flex;flex-direction:column;gap:8px}
+        .arm-list li{color:var(--text2);font-size:0.9rem;display:flex;align-items:center;gap:8px}
+        .arm-list li::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0}
+        .arm-list li a{color:var(--text);font-weight:500}
+        .arm-list li a:hover{color:var(--accent)}
 
-        .app-card{display:grid;grid-template-columns:auto 1fr;gap:40px;padding:48px;background:var(--glass);border:1px solid var(--border);border-radius:20px;align-items:center;transition:border-color 0.3s}
-        .app-card:hover{border-color:rgba(99,102,241,0.2)}
-        .app-icon{width:120px;height:120px;border-radius:24px;overflow:hidden;box-shadow:0 8px 40px rgba(10,180,255,0.15)}
-        .app-icon img{width:100%;height:100%;object-fit:cover}
-        .app-info h3{font-size:1.6rem;font-weight:700;margin-bottom:6px;letter-spacing:-0.02em}
-        .app-tagline{color:var(--text2);font-size:1.05rem;margin-bottom:16px}
-        .app-features{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
-        .app-tag{padding:4px 12px;background:var(--bg2);border:1px solid var(--border);border-radius:20px;font-size:0.8rem;color:var(--text2);font-weight:500}
-        .app-actions{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
-        .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border-radius:10px;font-weight:600;font-size:0.95rem;transition:all 0.2s;cursor:pointer;border:none;text-decoration:none}
-        .btn-primary{background:#6366f1;color:#fff}
-        .btn-primary:hover{background:#4f46e5;transform:translateY(-2px);box-shadow:0 8px 30px rgba(99,102,241,0.3)}
-        .btn-ghost{background:transparent;color:var(--text);border:1.5px solid var(--border);padding:11px 24px}
-        .btn-ghost:hover{border-color:#6366f1;background:var(--glass)}
-        .app-price{color:var(--text3);font-size:0.85rem;font-weight:500}
+        /* ---- SECTION SHARED ---- */
+        .section-label{font-size:0.8rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
+        .section-title{font-size:2rem;font-weight:800;letter-spacing:-0.03em;margin-bottom:16px}
+        .section-desc{color:var(--text2);margin-bottom:40px;max-width:560px;font-size:1rem;line-height:1.7}
+
+        /* ---- PRODUCTS ---- */
+        .products{padding:80px 0}
+        .product-grid{display:flex;flex-direction:column;gap:24px}
+        .product-card{display:grid;grid-template-columns:100px 1fr;gap:32px;padding:36px;background:var(--glass);border:1px solid var(--border);border-radius:20px;align-items:center;transition:border-color 0.3s}
+        .product-card:hover{border-color:rgba(59,130,246,0.2)}
+        .product-icon{width:100px;height:100px;border-radius:20px;overflow:hidden}
+        .product-icon img{width:100%;height:100%;object-fit:cover}
+        .product-info h3{font-size:1.4rem;font-weight:700;margin-bottom:4px;letter-spacing:-0.02em}
+        .product-tagline{color:var(--text2);font-size:0.95rem;margin-bottom:12px}
+        .product-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}
+        .product-tag{padding:3px 10px;background:var(--bg2);border:1px solid var(--border);border-radius:20px;font-size:0.78rem;color:var(--text2);font-weight:500}
+        .product-actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+        .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 20px;border-radius:10px;font-weight:600;font-size:0.9rem;transition:all 0.2s;cursor:pointer;border:none;text-decoration:none}
+        .btn-primary{background:var(--accent);color:#fff}
+        .btn-primary:hover{background:var(--accent2);transform:translateY(-1px);box-shadow:0 8px 30px var(--accent-glow)}
+        .btn-ghost{background:transparent;color:var(--text);border:1.5px solid var(--border);padding:9px 20px}
+        .btn-ghost:hover{border-color:var(--accent);background:var(--glass)}
+        .product-price{color:var(--text3);font-size:0.82rem;font-weight:500}
+
+        /* ---- RESEARCH ---- */
+        .research{padding:80px 0}
+        .research-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+        .research-card{background:var(--glass);border:1px solid var(--border);border-radius:14px;padding:24px;transition:border-color 0.2s}
+        .research-card:hover{border-color:rgba(59,130,246,0.2)}
+        .research-card h3{font-size:1rem;font-weight:600;margin-bottom:6px}
+        .research-card p{font-size:0.85rem;color:var(--text2);margin-bottom:10px;line-height:1.5}
+        .research-card .stat{color:var(--accent);font-weight:600;font-size:0.85rem}
+
+        /* ---- FOUNDER ---- */
+        .founder{padding:80px 0}
+        .founder-card{display:grid;grid-template-columns:1fr 1fr;gap:48px;padding:48px;background:var(--glass);border:1px solid var(--border);border-radius:20px;align-items:center}
+        .founder-text h3{font-size:1.5rem;font-weight:700;margin-bottom:12px;letter-spacing:-0.02em}
+        .founder-text p{color:var(--text2);font-size:0.95rem;line-height:1.7;margin-bottom:16px}
+        .founder-stats{display:flex;gap:24px;flex-wrap:wrap;margin-bottom:20px}
+        .founder-stat{text-align:center}
+        .founder-stat .num{font-size:1.6rem;font-weight:800;color:var(--accent);line-height:1}
+        .founder-stat .label{font-size:0.7rem;color:var(--text3);text-transform:uppercase;letter-spacing:0.05em;margin-top:2px}
+        .founder-links{display:flex;gap:12px;flex-wrap:wrap}
+        .founder-creds{display:flex;flex-direction:column;gap:12px}
+        .cred{display:flex;align-items:flex-start;gap:10px;font-size:0.9rem;color:var(--text2)}
+        .cred-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);flex-shrink:0;margin-top:6px}
 
         /* ---- FOOTER ---- */
         footer{padding:48px 0;border-top:1px solid var(--border);text-align:center}
@@ -85,13 +129,16 @@
         @media(max-width:768px){
             .hero{padding:120px 0 60px}
             .hero h1{font-size:2.2rem}
-            .hero-sub{font-size:1rem}
-            .hero-values{gap:16px}
-            .app-card{grid-template-columns:1fr;text-align:center;padding:32px 24px}
-            .app-icon{margin:0 auto}
-            .app-features{justify-content:center}
-            .app-actions{justify-content:center}
-            .section-title{font-size:1.8rem}
+            .dual-grid{grid-template-columns:1fr}
+            .product-card{grid-template-columns:1fr;text-align:center;padding:28px 24px}
+            .product-icon{margin:0 auto}
+            .product-tags{justify-content:center}
+            .product-actions{justify-content:center}
+            .founder-card{grid-template-columns:1fr;text-align:center}
+            .founder-stats{justify-content:center}
+            .founder-links{justify-content:center}
+            .founder-creds{align-items:center}
+            .section-title{font-size:1.6rem}
             .nav-links{display:none}
         }
     </style>
@@ -112,87 +159,202 @@
                 Peak Summit Labs
             </a>
             <div class="nav-links">
-                <a href="#apps" class="nav-link">Apps</a>
+                <a href="#products" class="nav-link">Products</a>
+                <a href="#research" class="nav-link">Research</a>
+                <a href="#founder" class="nav-link">About</a>
                 <a href="mailto:support@peaksummitlabs.com" class="nav-link">Contact</a>
             </div>
         </div>
     </nav>
 
+    <!-- HERO -->
     <section class="hero">
         <div class="container">
             <div class="hero-logo"><img src="psl-logo.png" alt="Peak Summit Labs"></div>
-            <h1>Software that <span>respects you.</span></h1>
-            <p class="hero-sub">We build tools that run on your device, cost once, and never phone home. No subscriptions, no cloud dependency, no telemetry.</p>
-            <div class="hero-values">
-                <div class="hero-value">
+            <h1>Research that <span>ships.</span></h1>
+            <p class="hero-sub">We build AI infrastructure and privacy-first software. Our research becomes products. Our products validate our research. One flywheel.</p>
+            <p class="hero-founder">Founded by <a href="https://myronkoch.dev" target="_blank">Myron Koch</a> - independent AI researcher, former AI Director, guest lecturer at Harvard, MIT, Princeton, Cornell Tech, NYU, and Oxford.</p>
+            <div class="hero-pills">
+                <div class="pill">
                     <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
                     Privacy-first
                 </div>
-                <div class="hero-value">
+                <div class="pill">
                     <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
                     One-time pricing
                 </div>
-                <div class="hero-value">
+                <div class="pill">
                     <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-                    Fully offline
+                    Runs locally
+                </div>
+                <div class="pill">
+                    <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+                    Open research
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="apps" class="apps">
+    <!-- DUAL ARM -->
+    <section class="dual">
         <div class="container">
-            <p class="section-label">Our Apps</p>
-            <h2 class="section-title">Built for people, not metrics.</h2>
-
-            <div class="app-card">
-                <div class="app-icon">
-                    <img src="app-icon.png" alt="Push to Transcribe" width="120" height="120">
+            <div class="dual-grid">
+                <div class="arm">
+                    <div class="arm-icon">&#9881;</div>
+                    <h3>Product Arm</h3>
+                    <p>Desktop apps for macOS that run on your device, cost once, and never phone home. Built on our own research.</p>
+                    <ul class="arm-list">
+                        <li><a href="https://pushtotranscribe.com">Push to Transcribe</a> - voice-to-text, $19.99</li>
+                        <li><a href="https://markdossier.com">MarkDossier</a> - markdown editor, $14.99</li>
+                    </ul>
                 </div>
-                <div class="app-info">
-                    <h3>Push to Transcribe</h3>
-                    <p class="app-tagline">Assistive voice-to-text for macOS. Hold a key, speak, see text - privately and instantly on your Mac.</p>
-                    <div class="app-features">
-                        <span class="app-tag">macOS 14.0+</span>
-                        <span class="app-tag">100% Local</span>
-                        <span class="app-tag">100+ Languages</span>
-                        <span class="app-tag">Accessibility</span>
-                        <span class="app-tag">Works Offline</span>
-                    </div>
-                    <div class="app-actions">
-                        <a href="https://pushtotranscribe.com" class="btn btn-primary">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                            Visit Website
-                        </a>
-                        <a href="https://downloads.pushtotranscribe.com/PushToTranscribe-latest-free.dmg" class="btn btn-ghost"><svg width="14" height="17" viewBox="0 0 814 1000" fill="currentColor" style="margin-right:6px"><path d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76.5 0-103.7 40.8-165.9 40.8s-105.6-57.8-155.5-127.4c-58.3-81-105.6-207.6-105.6-328.3 0-193.1 125.4-295.6 248.9-295.6 65.6 0 120.2 43.1 161.4 43.1 39.2 0 100.4-45.8 174.5-45.8 28.2 0 129.5 2.6 196.4 99zM554.1 159.4c31.1-36.9 53.1-88.1 53.1-139.4 0-7.1-.6-14.3-1.9-20.1-50.6 1.9-110.8 33.7-147.1 75.8-28.9 32.4-54.5 83.7-54.5 135.7 0 7.8.6 15.6 1.3 18.2 2.6.6 6.5 1.3 10.4 1.3 45.7 0 103.7-30.4 138.7-71.5z"/></svg>Download Free Trial</a>
-                        <span class="app-price">$19.99 one-time</span>
-                    </div>
+                <div class="arm">
+                    <div class="arm-icon">&#9878;</div>
+                    <h3>Research Arm</h3>
+                    <p>Papers, standards, and open source tools for multi-agent orchestration, semantic memory, and MCP infrastructure.</p>
+                    <ul class="arm-list">
+                        <li><a href="https://operationalsemantics.dev">Operational Semantics</a> - 45+ technical posts</li>
+                        <li><a href="https://bmcps.dev">BMCPS v3.0</a> - open MCP standard, 238 tests</li>
+                        <li>arXiv papers on memory and agent systems</li>
+                    </ul>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <div class="app-card" style="margin-top:24px">
-                <div class="app-icon" style="box-shadow:0 8px 40px rgba(196,132,42,0.15)">
-                    <img src="https://markdossier.com/assets/png/icon-512.png" alt="markdossier" width="120" height="120">
+    <!-- PRODUCTS -->
+    <section id="products" class="products">
+        <div class="container">
+            <p class="section-label">Products</p>
+            <h2 class="section-title">Built for people, not metrics.</h2>
+            <p class="section-desc">Every app runs locally on your Mac. No accounts. No cloud. No telemetry. Buy once, keep forever.</p>
+
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-icon" style="box-shadow:0 8px 32px rgba(10,180,255,0.15)">
+                        <img src="app-icon.png" alt="Push to Transcribe" width="100" height="100">
+                    </div>
+                    <div class="product-info">
+                        <h3>Push to Transcribe</h3>
+                        <p class="product-tagline">Assistive voice-to-text for macOS. Hold a key, speak, see text. Powered by Whisper, entirely on your Mac.</p>
+                        <div class="product-tags">
+                            <span class="product-tag">macOS 14.0+</span>
+                            <span class="product-tag">100% Local</span>
+                            <span class="product-tag">100+ Languages</span>
+                            <span class="product-tag">Accessibility</span>
+                        </div>
+                        <div class="product-actions">
+                            <a href="https://pushtotranscribe.com" class="btn btn-primary">Website</a>
+                            <a href="https://downloads.pushtotranscribe.com/PushToTranscribe-latest-free.dmg" class="btn btn-ghost">Free Trial</a>
+                            <span class="product-price">$19.99 one-time</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="app-info">
-                    <h3>markdossier</h3>
-                    <p class="app-tagline">WYSIWYG markdown editor for macOS. Open your .md files and see rendered documents - never raw syntax.</p>
-                    <div class="app-features">
-                        <span class="app-tag">macOS</span>
-                        <span class="app-tag">WYSIWYG</span>
-                        <span class="app-tag">Agent Hot-Reload</span>
-                        <span class="app-tag">KaTeX + Mermaid</span>
-                        <span class="app-tag">40+ Preferences</span>
+
+                <div class="product-card">
+                    <div class="product-icon" style="box-shadow:0 8px 32px rgba(196,132,42,0.15)">
+                        <img src="https://markdossier.com/assets/png/icon-512.png" alt="MarkDossier" width="100" height="100">
                     </div>
-                    <div class="app-actions">
-                        <a href="https://markdossier.com" class="btn btn-primary">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                            Visit Website
-                        </a>
-                        <a href="https://buy.polar.sh/polar_cl_T3cQSxuNXB1NYO8595FOKIdcOv6qjHdm7Ojuq1Xerem" class="btn btn-ghost">Buy Direct</a>
-                        <a href="https://apps.apple.com/app/markdossier/id6761446280" class="btn btn-ghost" target="_blank">Mac App Store</a>
-                        <span class="app-price">$14.99 one-time</span>
+                    <div class="product-info">
+                        <h3>MarkDossier</h3>
+                        <p class="product-tagline">WYSIWYG markdown editor for macOS. Open .md files and see rendered documents. Hot-reloads when agents write to your files.</p>
+                        <div class="product-tags">
+                            <span class="product-tag">macOS</span>
+                            <span class="product-tag">WYSIWYG</span>
+                            <span class="product-tag">Agent Hot-Reload</span>
+                            <span class="product-tag">KaTeX + Mermaid</span>
+                        </div>
+                        <div class="product-actions">
+                            <a href="https://markdossier.com" class="btn btn-primary">Website</a>
+                            <a href="https://apps.apple.com/app/markdossier/id6761446280" class="btn btn-ghost" target="_blank">Mac App Store</a>
+                            <span class="product-price">$14.99 one-time</span>
+                        </div>
                     </div>
+                </div>
+
+                <!-- DeadGraph - in stealth, add back when payment mechanism and testing complete -->
+            </div>
+        </div>
+    </section>
+
+    <!-- RESEARCH -->
+    <section id="research" class="research">
+        <div class="container">
+            <p class="section-label">Research</p>
+            <h2 class="section-title">Papers, standards, and open source.</h2>
+            <p class="section-desc">Building the infrastructure that makes AI agents work. Publishing what we learn.</p>
+
+            <div class="research-grid">
+                <div class="research-card">
+                    <h3>Reminisce: Episodic Memory for LLM Agents</h3>
+                    <p>Architecture for persistent agent memory using keyword ranking and semantic consolidation. PostgreSQL + pgvector.</p>
+                    <span class="stat">98.3% precision on LongMemEvalS - arXiv 2026</span>
+                </div>
+                <div class="research-card">
+                    <h3>PrimeAgentOrchestrator</h3>
+                    <p>Bridge-don't-own multi-agent coordination. Cross-machine orchestration via Cloudflare Durable Objects.</p>
+                    <span class="stat">15-task evaluation - Draft 2026</span>
+                </div>
+                <a href="https://bmcps.dev" class="research-card" target="_blank">
+                    <h3>BMCPS v3.0 Standard</h3>
+                    <p>Open standard for safe, consistent MCP tool interfaces. Modular architecture. MIT licensed.</p>
+                    <span class="stat">25 mandatory tools - 238 automated tests</span>
+                </a>
+                <a href="https://operationalsemantics.dev" class="research-card" target="_blank">
+                    <h3>Operational Semantics</h3>
+                    <p>Technical blog documenting the full research journey. MCP development, agent orchestration, semantic memory, and standards.</p>
+                    <span class="stat">45+ deep-dive posts</span>
+                </a>
+                <a href="https://github.com/MyronKoch/evm-chains-mcp-server" class="research-card" target="_blank">
+                    <h3>MCP at Scale</h3>
+                    <p>Production MCP server with 111 tools across 7 blockchain networks. Demonstrates MCP patterns for complex orchestration.</p>
+                    <span class="stat">111 tools - 7 networks</span>
+                </a>
+                <a href="https://github.com/rxhanson/Rectangle/pull/1720" class="research-card" target="_blank">
+                    <h3>Open Source Contributions</h3>
+                    <p>Contributor to Rectangle (25K-star macOS window manager). 16+ MCP servers built. MCP Server Factory for auto-generation.</p>
+                    <span class="stat">25K+ star project - Merged PR</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOUNDER -->
+    <section id="founder" class="founder">
+        <div class="container">
+            <div class="founder-card">
+                <div class="founder-text">
+                    <h3>Built by one person.</h3>
+                    <p>Peak Summit Labs is founded and operated by Myron Koch - independent AI researcher, engineer, and former festival founder. Every product, every paper, and every line of infrastructure is built solo using AI-augmented engineering.</p>
+                    <p>The name comes from the Peak Summit Groove and Dance Festival, a multi-venue music festival Myron founded and operated for over a decade. Same instinct, different domain: take isolated tools, find the undervalued space, build something bigger than the parts.</p>
+                    <div class="founder-stats">
+                        <div class="founder-stat">
+                            <div class="num">25</div>
+                            <div class="label">Years in Tech + Music</div>
+                        </div>
+                        <div class="founder-stat">
+                            <div class="num">6+2</div>
+                            <div class="label">Ivy League + Oxford</div>
+                        </div>
+                        <div class="founder-stat">
+                            <div class="num">3</div>
+                            <div class="label">arXiv Papers</div>
+                        </div>
+                    </div>
+                    <div class="founder-links">
+                        <a href="https://myronkoch.dev" class="btn btn-primary" target="_blank">Portfolio</a>
+                        <a href="https://operationalsemantics.dev" class="btn btn-ghost" target="_blank">Blog</a>
+                        <a href="https://github.com/MyronKoch" class="btn btn-ghost" target="_blank">GitHub</a>
+                    </div>
+                </div>
+                <div class="founder-creds">
+                    <div class="cred"><span class="cred-dot"></span> Guest lecturer at Harvard, MIT, Princeton, Cornell Tech, NYU, and Oxford</div>
+                    <div class="cred"><span class="cred-dot"></span> Keynote speaker, Web3 Summit Amsterdam</div>
+                    <div class="cred"><span class="cred-dot"></span> Author, BMCPS v3.0 open standard for MCP interfaces</div>
+                    <div class="cred"><span class="cred-dot"></span> Contributor to Rectangle (25K-star macOS utility)</div>
+                    <div class="cred"><span class="cred-dot"></span> Former AI Director and COO</div>
+                    <div class="cred"><span class="cred-dot"></span> Built online ticketing platform before Ticketmaster went digital</div>
+                    <div class="cred"><span class="cred-dot"></span> Founded and operated one of the region's largest music festivals (2000-2022)</div>
                 </div>
             </div>
         </div>
@@ -201,10 +363,13 @@
     <footer>
         <div class="container">
             <div class="footer-links">
-                <a href="mailto:support@peaksummitlabs.com">support@peaksummitlabs.com</a>
+                <a href="mailto:support@peaksummitlabs.com">Contact</a>
                 <a href="https://pushtotranscribe.com">Push to Transcribe</a>
-                <a href="https://markdossier.com">markdossier</a>
+                <a href="https://markdossier.com">MarkDossier</a>
+                <a href="https://operationalsemantics.dev">Blog</a>
+                <a href="https://operationalsemantics.dev">Blog</a>
                 <a href="https://www.linkedin.com/company/peak-summit-labs">LinkedIn</a>
+                <a href="https://myronkoch.dev">Myron Koch</a>
             </div>
             <p class="footer-copy">&copy; 2026 Peak Summit Labs. All rights reserved.</p>
         </div>
