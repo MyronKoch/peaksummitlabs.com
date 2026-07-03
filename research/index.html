@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Research on the record - Peak Summit Labs</title>
+<meta name="description" content="Peak Summit Labs research on AI-agent memory and orchestration, published openly with permanent Zenodo DOIs. Receipts, not claims - including the failures most people never write up.">
+<meta property="og:title" content="Research on the record - Peak Summit Labs">
+<meta property="og:description" content="AI-agent memory and orchestration papers, published with permanent DOIs. Receipts, not claims.">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{
+        --bg:#09090b;--bg2:#111113;--bg3:#18181b;
+        --text:#f4f4f5;--text2:#a1a1aa;--text3:#52525b;
+        --accent:#3b82f6;--accent2:#60a5fa;--accent-glow:rgba(59,130,246,0.15);
+        --border:rgba(255,255,255,0.06);--glass:rgba(255,255,255,0.03);
+    }
+    html{scroll-behavior:smooth}
+    body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+    a{color:inherit;text-decoration:none}
+    .container{max-width:1100px;margin:0 auto;padding:0 24px;position:relative}
+
+    .mountains{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;pointer-events:none}
+    .mountains svg{width:100%;height:100%;display:block}
+
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 0;background:rgba(9,9,11,0.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid transparent;transition:border-color .3s}
+    nav.scrolled{border-bottom-color:var(--border)}
+    .nav-inner{max-width:1100px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between}
+    .logo{font-weight:700;font-size:1.1rem;display:flex;align-items:center;gap:10px;letter-spacing:-.02em}
+    .logo-mark{width:32px;height:32px}
+    .nav-links{display:flex;align-items:center;gap:24px}
+    .nav-link{color:var(--text2);font-size:.875rem;font-weight:500;transition:color .2s}
+    .nav-link:hover{color:var(--text)}
+
+    .hero{padding:150px 0 40px;text-align:center;position:relative;overflow:hidden}
+    .hero::before{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:800px;height:800px;background:radial-gradient(circle,var(--accent-glow) 0%,transparent 70%);pointer-events:none}
+    .section-label{font-size:.8rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+    .hero h1{font-size:3.1rem;font-weight:800;letter-spacing:-.03em;line-height:1.1;margin-bottom:18px}
+    .hero h1 span{background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .hero-sub{font-size:1.12rem;color:var(--text2);max-width:620px;margin:0 auto;line-height:1.7}
+
+    .papers{padding:48px 0 24px}
+    .paper-grid{display:flex;flex-direction:column;gap:20px}
+    .paper-card{background:var(--glass);border:1px solid var(--border);border-radius:18px;padding:32px 34px;transition:border-color .25s,transform .25s}
+    .paper-card:hover{border-color:rgba(59,130,246,.25);transform:translateY(-2px)}
+    .paper-meta{font-size:.75rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--text3);margin-bottom:12px}
+    .paper-card h2{font-size:1.35rem;font-weight:700;letter-spacing:-.02em;line-height:1.3;margin-bottom:12px}
+    .paper-card .plain{color:var(--text2);font-size:1rem;line-height:1.65;margin-bottom:16px;max-width:720px}
+    .paper-card .stat{display:inline-block;background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:9px 14px;font-size:.9rem;color:var(--text2);margin-bottom:18px}
+    .paper-card .stat b{color:var(--accent);font-weight:700}
+    .doi{display:inline-flex;align-items:center;gap:8px;font-size:.9rem;font-weight:600;color:var(--accent)}
+    .doi:hover{color:var(--accent2);text-decoration:underline}
+    .doi svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+    .honesty{margin:40px 0 8px;padding:34px 36px;background:linear-gradient(135deg,rgba(59,130,246,.10),var(--glass));border:1px solid rgba(59,130,246,.22);border-radius:18px}
+    .honesty h3{font-size:1.25rem;font-weight:700;letter-spacing:-.02em;margin-bottom:10px}
+    .honesty p{color:var(--text2);font-size:1rem;line-height:1.7;max-width:760px}
+
+    footer{padding:48px 0;border-top:1px solid var(--border);text-align:center;margin-top:40px}
+    .footer-links{display:flex;justify-content:center;gap:24px;margin-bottom:16px;flex-wrap:wrap}
+    .footer-links a{color:var(--text2);font-size:.875rem;transition:color .2s}
+    .footer-links a:hover{color:var(--text)}
+    .footer-copy{color:var(--text3);font-size:.8rem}
+
+    @media(max-width:768px){
+        .hero{padding:120px 0 30px}
+        .hero h1{font-size:2.1rem}
+        .paper-card{padding:26px 24px}
+        .nav-links{display:none}
+    }
+</style>
+</head>
+<body>
+    <div class="mountains" aria-hidden="true">
+        <svg viewBox="0 0 1440 800" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 540 L80 520 L150 480 L220 440 L280 400 L320 360 L350 340 L370 350 L400 330 L440 290 L480 260 L520 240 L550 250 L580 260 L620 230 L660 200 L700 180 L730 195 L760 220 L800 240 L840 235 L880 250 L920 270 L960 280 L1000 285 L1050 275 L1100 290 L1150 320 L1200 345 L1260 365 L1320 385 L1380 405 L1440 430" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1.5" vector-effect="non-scaling-stroke" stroke-linejoin="round"/>
+            <path d="M0 640 L70 630 L140 610 L200 590 L260 570 L310 555 L360 545 L400 535 L440 540 L480 535 L530 515 L580 500 L630 490 L680 480 L720 475 L760 485 L800 490 L850 480 L900 465 L950 460 L1000 465 L1050 470 L1100 465 L1160 475 L1220 490 L1280 500 L1340 515 L1400 525 L1440 535" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="1.5" vector-effect="non-scaling-stroke" stroke-linejoin="round"/>
+            <path d="M0 710 L80 700 L160 690 L240 680 L320 670 L400 655 L460 648 L520 645 L580 650 L640 645 L700 635 L760 628 L820 625 L880 630 L940 625 L1000 618 L1060 620 L1120 628 L1180 635 L1240 640 L1300 648 L1360 655 L1440 660" fill="none" stroke="rgba(255,255,255,0.09)" stroke-width="1.5" vector-effect="non-scaling-stroke" stroke-linejoin="round"/>
+        </svg>
+    </div>
+
+    <nav id="nav">
+        <div class="nav-inner">
+            <a href="https://peaksummitlabs.com" class="logo">
+                <div class="logo-mark"><svg viewBox="0 0 200 200" fill="none"><polygon points="100,18 180,172 20,172" stroke="#0ea5e9" stroke-width="8" stroke-linejoin="round" fill="none"/><polygon points="100,62 140,142 60,142" fill="#1a2332" stroke="#2a3a4e" stroke-width="2" stroke-linejoin="round"/><polygon points="100,88 118,122 82,122" fill="#0ea5e9" opacity="0.35" stroke="#0ea5e9" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
+                Peak Summit Labs
+            </a>
+            <div class="nav-links">
+                <a href="https://peaksummitlabs.com/#products" class="nav-link">Products</a>
+                <a href="https://peaksummitlabs.com/#research" class="nav-link">Research</a>
+                <a href="https://peaksummitlabs.com/#founder" class="nav-link">About</a>
+                <a href="mailto:support@peaksummitlabs.com" class="nav-link">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container">
+            <p class="section-label">Research</p>
+            <h1>Research on the <span>record.</span></h1>
+            <p class="hero-sub">A one-person lab building and stress-testing AI-agent memory and orchestration in production. Published in the open, with permanent DOIs. Receipts, not claims - including the failures most people never write up.</p>
+        </div>
+    </section>
+
+    <section class="papers">
+        <div class="container">
+            <div class="paper-grid">
+
+                <article class="paper-card">
+                    <p class="paper-meta">April 2026 &middot; Systems &middot; CC BY 4.0</p>
+                    <h2>PrimeAgentOrchestrator: Memory-Primed Agent Spawning for Personal AI Infrastructure</h2>
+                    <p class="plain">Coding agents start every session with an empty head. This one spawns fresh agents already loaded with the memory of everything that came before, pulled live from personal databases and fused across two backends at spawn time.</p>
+                    <p class="stat">Documented over <b>four months</b> of real deployment and three redesigns of the delivery mechanism.</p><br>
+                    <a class="doi" href="https://doi.org/10.5281/zenodo.20735389" target="_blank"><svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 007 0l3-3a5 5 0 00-7-7l-1 1"/><path d="M14 11a5 5 0 00-7 0l-3 3a5 5 0 007 7l1-1"/></svg>Read it &middot; DOI 10.5281/zenodo.20735389</a>
+                </article>
+
+                <article class="paper-card">
+                    <p class="paper-meta">May 2026 &middot; Systems &middot; Open source &middot; CC BY 4.0</p>
+                    <h2>Reminisce: A Cognitive Science-Inspired Memory Architecture for AI Agents</h2>
+                    <p class="plain">A memory system for agents modeled on how human memory actually works: a working buffer, an episodic timeline, and a semantic layer that notices when new facts contradict old ones. Released open source and benchmarked on LongMemEvalS.</p>
+                    <p class="stat">Model choice moved coverage from <b>49.4% to 55.8%</b>, but precision held flat near <b>81%</b> across tiers.</p><br>
+                    <a class="doi" href="https://doi.org/10.5281/zenodo.20088749" target="_blank"><svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 007 0l3-3a5 5 0 00-7-7l-1 1"/><path d="M14 11a5 5 0 00-7 0l-3 3a5 5 0 007 7l1-1"/></svg>Read it &middot; DOI 10.5281/zenodo.20088749</a>
+                </article>
+
+                <article class="paper-card">
+                    <p class="paper-meta">April 2026 &middot; Postmortem &middot; CC BY 4.0</p>
+                    <h2>The Placeholder That Became Production: A Postmortem of Extractive Memory Under Continuous Multi-Agent Ingestion</h2>
+                    <p class="plain">The uncomfortable follow-up. A memory system that started at 98.3% precision, then rotted in production: noise went from zero to 77% in a single day, traced to a fact extractor left in that was marked "for testing." A full accounting of the failure, and a benchmark to catch the next one before it ships.</p>
+                    <p class="stat">Noise accumulation <b>0% to 77.2% in one day</b>; one "test" extractor produced <b>34.5%</b> of the database.</p><br>
+                    <a class="doi" href="https://doi.org/10.5281/zenodo.20735397" target="_blank"><svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 007 0l3-3a5 5 0 00-7-7l-1 1"/><path d="M14 11a5 5 0 00-7 0l-3 3a5 5 0 007 7l1-1"/></svg>Read it &middot; DOI 10.5281/zenodo.20735397</a>
+                </article>
+
+            </div>
+
+            <div class="honesty">
+                <h3>Why the postmortem is here on purpose</h3>
+                <p>Anyone can post the paper where the numbers went up. Publishing the one where the system failed, with the exact cause and the receipts, is rarer and worth more. It is how you tell a lab that measures what it ships from a lab that only markets it.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="https://peaksummitlabs.com">Peak Summit Labs</a>
+                <a href="https://myronkoch.dev">Myron Koch</a>
+                <a href="https://operationalsemantics.dev">Blog</a>
+                <a href="https://www.linkedin.com/company/peak-summit-labs">LinkedIn</a>
+                <a href="mailto:support@peaksummitlabs.com">Contact</a>
+            </div>
+            <p class="footer-copy">All three papers are archived on Zenodo with permanent, citable DOIs, licensed CC BY 4.0. &copy; 2026 Peak Summit Labs.</p>
+        </div>
+    </footer>
+
+    <script>
+        const nav=document.getElementById('nav');
+        window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>50)});
+    </script>
+</body>
+</html>
