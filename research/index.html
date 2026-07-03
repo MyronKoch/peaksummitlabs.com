@@ -123,15 +123,15 @@
                     <p class="paper-meta">May 2026 &middot; Systems &middot; Open source &middot; CC BY 4.0</p>
                     <h2>Reminisce: A Cognitive Science-Inspired Memory Architecture for AI Agents</h2>
                     <p class="plain">A memory system for agents modeled on how human memory actually works: a working buffer, an episodic timeline, and a semantic layer that notices when new facts contradict old ones. Released open source and benchmarked on LongMemEvalS.</p>
-                    <p class="stat">Model choice moved coverage from <b>49.4% to 55.8%</b>, but precision held flat near <b>81%</b> across tiers.</p><br>
+                    <p class="stat"><b>49.4% to 55.8%</b> accuracy on LongMemEvalS across Claude tiers, with <b>~81% precision</b> on attempted answers (98.3% peak on direct single-session recall). Open source, MIT, 606 tests.</p><br>
                     <a class="doi" href="https://doi.org/10.5281/zenodo.20088749" target="_blank"><svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 007 0l3-3a5 5 0 00-7-7l-1 1"/><path d="M14 11a5 5 0 00-7 0l-3 3a5 5 0 007 7l1-1"/></svg>Read it &middot; DOI 10.5281/zenodo.20088749</a>
                 </article>
 
                 <article class="paper-card">
                     <p class="paper-meta">April 2026 &middot; Postmortem &middot; CC BY 4.0</p>
                     <h2>The Placeholder That Became Production: A Postmortem of Extractive Memory Under Continuous Multi-Agent Ingestion</h2>
-                    <p class="plain">The uncomfortable follow-up. A memory system that started at 98.3% precision, then rotted in production: noise went from zero to 77% in a single day, traced to a fact extractor left in that was marked "for testing." A full accounting of the failure, and a benchmark to catch the next one before it ships.</p>
-                    <p class="stat">Noise accumulation <b>0% to 77.2% in one day</b>; one "test" extractor produced <b>34.5%</b> of the database.</p><br>
+                    <p class="plain">The uncomfortable follow-up. A memory system that scored 98.3% on the benchmark, then rotted in production: noise climbed to 57% over four months, then jumped to 77% within a day of the retirement attempt, traced to a fact extractor left in that was marked "for testing." A full accounting of the failure, and a benchmark to catch the next one before it ships.</p>
+                    <p class="stat">Noise climbed to <b>57.5% over four months</b>, then <b>77.2% within a day</b> of the retirement attempt; the "for testing" extractor produced <b>34.5%</b> of the retired database.</p><br>
                     <a class="doi" href="https://doi.org/10.5281/zenodo.20735397" target="_blank"><svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 007 0l3-3a5 5 0 00-7-7l-1 1"/><path d="M14 11a5 5 0 00-7 0l-3 3a5 5 0 007 7l1-1"/></svg>Read it &middot; DOI 10.5281/zenodo.20735397</a>
                 </article>
 
