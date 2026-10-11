@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RingHealth - Peak Summit Labs</title>
+<meta name="description" content="RingHealth: a free, private iPhone app for SmartHealth smart rings. No account, no cloud, no tracking. Compatible rings, support and privacy policy.">
+<meta property="og:title" content="RingHealth - a private app for SmartHealth rings">
+<meta property="og:description" content="Free. No account, no cloud, no tracking. Which rings work, support, and privacy policy.">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{
+        --bg:#09090b;--bg2:#111113;--bg3:#18181b;
+        --text:#f4f4f5;--text2:#a1a1aa;--text3:#52525b;
+        --accent:#3b82f6;--accent2:#60a5fa;--accent-glow:rgba(59,130,246,0.15);
+        --border:rgba(255,255,255,0.06);--glass:rgba(255,255,255,0.03);
+    }
+    html{scroll-behavior:smooth}
+    body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+    a{color:inherit;text-decoration:none}
+    .container{max-width:1100px;margin:0 auto;padding:0 24px;position:relative}
+
+    .mountains{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;pointer-events:none}
+    .mountains svg{width:100%;height:100%;display:block}
+
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 0;background:rgba(9,9,11,0.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid transparent;transition:border-color .3s}
+    nav.scrolled{border-bottom-color:var(--border)}
+    .nav-inner{max-width:1100px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between}
+    .logo{font-weight:700;font-size:1.1rem;display:flex;align-items:center;gap:10px;letter-spacing:-.02em}
+    .logo-mark{width:32px;height:32px}
+    .nav-links{display:flex;align-items:center;gap:24px}
+    .nav-link{color:var(--text2);font-size:.875rem;font-weight:500;transition:color .2s}
+    .nav-link:hover{color:var(--text)}
+
+    .hero{padding:150px 0 40px;text-align:center;position:relative;overflow:hidden}
+    .hero::before{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:800px;height:800px;background:radial-gradient(circle,var(--accent-glow) 0%,transparent 70%);pointer-events:none}
+    .section-label{font-size:.8rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+    .hero h1{font-size:3.1rem;font-weight:800;letter-spacing:-.03em;line-height:1.1;margin-bottom:18px}
+    .hero h1 span{background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .hero-sub{font-size:1.12rem;color:var(--text2);max-width:620px;margin:0 auto;line-height:1.7}
+
+    .papers{padding:48px 0 24px}
+    .paper-grid{display:flex;flex-direction:column;gap:20px}
+    .paper-card{background:var(--glass);border:1px solid var(--border);border-radius:18px;padding:32px 34px;transition:border-color .25s,transform .25s}
+    .paper-card:hover{border-color:rgba(59,130,246,.25);transform:translateY(-2px)}
+    .paper-meta{font-size:.75rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--text3);margin-bottom:12px}
+    .paper-card h2{font-size:1.35rem;font-weight:700;letter-spacing:-.02em;line-height:1.3;margin-bottom:12px}
+    .paper-card .plain{color:var(--text2);font-size:1rem;line-height:1.65;margin-bottom:16px;max-width:720px}
+    .paper-card .stat{display:inline-block;background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:9px 14px;font-size:.9rem;color:var(--text2);margin-bottom:18px}
+    .paper-card .stat b{color:var(--accent);font-weight:700}
+    .doi{display:inline-flex;align-items:center;gap:8px;font-size:.9rem;font-weight:600;color:var(--accent)}
+    .doi:hover{color:var(--accent2);text-decoration:underline}
+    .doi svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+    .honesty{margin:40px 0 8px;padding:34px 36px;background:linear-gradient(135deg,rgba(59,130,246,.10),var(--glass));border:1px solid rgba(59,130,246,.22);border-radius:18px}
+    .honesty h3{font-size:1.25rem;font-weight:700;letter-spacing:-.02em;margin-bottom:10px}
+    .honesty p{color:var(--text2);font-size:1rem;line-height:1.7;max-width:760px}
+
+    footer{padding:48px 0;border-top:1px solid var(--border);text-align:center;margin-top:40px}
+    .footer-links{display:flex;justify-content:center;gap:24px;margin-bottom:16px;flex-wrap:wrap}
+    .footer-links a{color:var(--text2);font-size:.875rem;transition:color .2s}
+    .footer-links a:hover{color:var(--text)}
+    .footer-copy{color:var(--text3);font-size:.8rem}
+
+    @media(max-width:768px){
+        .hero{padding:120px 0 30px}
+        .hero h1{font-size:2.1rem}
+        .paper-card{padding:26px 24px}
+        .nav-links{display:none}
+    }
+
+    .doc{padding:24px 0}
+    .card{background:var(--glass);border:1px solid var(--border);border-radius:18px;padding:32px 36px;margin-bottom:24px}
+    .card h2{font-size:1.45rem;font-weight:700;letter-spacing:-.02em;margin-bottom:14px}
+    .card h3{font-size:1.05rem;font-weight:700;margin:22px 0 8px}
+    .card p,.card li{color:var(--text2);font-size:1rem;line-height:1.7;max-width:760px}
+    .card ul,.card ol{padding-left:22px;margin:8px 0 12px}
+    .card strong{color:var(--text)}
+    .card a{color:var(--accent);font-weight:600}
+    .card a:hover{text-decoration:underline}
+    table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.95rem}
+    th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--border);color:var(--text2);vertical-align:top}
+    th{color:var(--text);font-weight:600}
+    .ok{color:#4ade80;font-weight:600}.no{color:#f87171;font-weight:600}.maybe{color:#facc15;font-weight:600}
+    .note{font-size:.9rem;color:var(--text3)}
+    .cta{display:inline-block;margin-top:8px;padding:11px 18px;border-radius:10px;background:var(--accent);color:#fff !important;font-weight:600}
+    @media(max-width:768px){.card{padding:24px 20px}}
+</style>
+</head>
+<body>
+    <div class="mountains" aria-hidden="true">
+        <svg viewBox="0 0 1440 800" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 540 L80 520 L150 480 L220 440 L280 400 L320 360 L350 340 L370 350 L400 330 L440 290 L480 260 L520 240 L550 250 L580 260 L620 230 L660 200 L700 180 L730 195 L760 220 L800 240 L840 235 L880 250 L920 270 L960 280 L1000 285 L1050 275 L1100 290 L1150 320 L1200 345 L1260 365 L1320 385 L1380 405 L1440 430" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1.5" vector-effect="non-scaling-stroke" stroke-linejoin="round"/>
+            <path d="M0 640 L70 630 L140 610 L200 590 L260 570 L310 555 L360 545 L400 535 L440 540 L480 535 L530 515 L580 500 L630 490 L680 480 L720 475 L760 485 L800 490 L850 480 L900 465 L950 460 L1000 465 L1050 470 L1100 465 L1160 475 L1220 490 L1280 500 L1340 515 L1400 525 L1440 535" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="1.5" vector-effect="non-scaling-stroke" stroke-linejoin="round"/>
+            <path d="M0 710 L80 700 L160 690 L240 680 L320 670 L400 655 L460 648 L520 645 L580 650 L640 645 L700 635 L760 628 L820 625 L880 630 L940 625 L1000 618 L1060 620 L1120 628 L1180 635 L1240 640 L1300 648 L1360 655 L1440 660" fill="none" stroke="rgba(255,255,255,0.09)" stroke-width="1.5" vector-effect="non-scaling-stroke" stroke-linejoin="round"/>
+        </svg>
+    </div>
+
+    <nav id="nav">
+        <div class="nav-inner">
+            <a href="https://peaksummitlabs.com" class="logo">
+                <div class="logo-mark"><svg viewBox="0 0 200 200" fill="none"><polygon points="100,18 180,172 20,172" stroke="#0ea5e9" stroke-width="8" stroke-linejoin="round" fill="none"/><polygon points="100,62 140,142 60,142" fill="#1a2332" stroke="#2a3a4e" stroke-width="2" stroke-linejoin="round"/><polygon points="100,88 118,122 82,122" fill="#0ea5e9" opacity="0.35" stroke="#0ea5e9" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
+                Peak Summit Labs
+            </a>
+            <div class="nav-links">
+                <a href="https://peaksummitlabs.com/#products" class="nav-link">Products</a>
+                <a href="https://peaksummitlabs.com/#research" class="nav-link">Research</a>
+                <a href="https://peaksummitlabs.com/#founder" class="nav-link">About</a>
+                <a href="mailto:support@peaksummitlabs.com" class="nav-link">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container">
+            <p class="section-label">Free iPhone app</p>
+            <h1>Your ring. Your phone. <span>Nobody else.</span></h1>
+            <p class="hero-sub">RingHealth is a free, private companion app for low-cost SmartHealth smart rings. Heart rate, sleep, blood oxygen estimates, breathing, HRV and stress, read straight from the ring and kept on your iPhone. No account, no cloud, no tracking.</p>
+        </div>
+    </section>
+
+    <section class="doc">
+        <div class="container">
+
+            <div class="card" id="about">
+                <h2>Why it exists</h2>
+                <p>These rings cost about as much as lunch, and they measure real things. The app they ship with wants you to create an account first. RingHealth talks to the ring directly over Bluetooth and keeps everything on your phone, with optional copies to Apple Health and to a backup folder you choose.</p>
+                <p class="note">Built by one person for himself and his dad. It is free and stays free.</p>
+            </div>
+
+            <div class="card" id="rings">
+                <h2>Which rings work</h2>
+                <p>RingHealth works with rings built on the Yucheng <strong>SmartHealth</strong> platform. The model name on the listing does not matter (sellers reuse names); what matters is that the box or listing says to use the <strong>SmartHealth</strong> app. If you pair a ring that is not compatible, RingHealth tells you right away instead of half-working.</p>
+                <table>
+                    <tr><th>Ring</th><th>Status</th><th>Notes</th></tr>
+                    <tr><td>TK5</td><td class="ok">Tested</td><td>Our daily ring. Sleep, heart rate, blood oxygen, breathing, HRV, stress, steps.</td></tr>
+                    <tr><td>R10M, R11M / R99, R21M</td><td class="maybe">Reported working</td><td>Same platform per other developers; we are buying units to confirm.</td></tr>
+                    <tr><td>Rings whose listing says "SmartHealth"</td><td class="maybe">Likely</td><td>Check the listing for the app name before you buy.</td></tr>
+                    <tr><td>QRing / Colmi, Jring / KeepFit, RWfit, LuckRing / TK18, Lefun</td><td class="no">Not compatible</td><td>Different protocols, even when the ring looks identical.</td></tr>
+                </table>
+                <p class="note">Buy links for tested rings will appear here once each listing has been checked with a real unit. Listings change often, so we only link to ones we have verified.</p>
+            </div>
+
+            <div class="card" id="support">
+                <h2>Support</h2>
+                <h3>The ring won't connect</h3>
+                <p>Put the ring on its charger for a minute to wake it, keep it near the phone, and make sure the original SmartHealth app is closed (a ring talks to one app at a time). Then open RingHealth and tap Connect.</p>
+                <h3>Last night is missing</h3>
+                <p>The ring stores readings while you sleep and RingHealth collects them the next time the app is open and the ring is nearby. If the ring was not worn, or was on the charger, there is nothing to collect.</p>
+                <h3>Moving to a new phone</h3>
+                <p>In RingHealth, open Data, then Backup, and choose a folder. The app saves a copy once a day. On the new phone, install RingHealth and tap "Restore from a backup".</p>
+                <h3>Are the numbers medical-grade?</h3>
+                <p>No. A ring's optical sensor gives useful trends, especially for heart rate and sleep, but blood pressure and blood oxygen from a ring are estimates. RingHealth is a wellness app, not a medical device.</p>
+                <h3>Contact</h3>
+                <p>Email <a href="mailto:support@peaksummitlabs.com">support@peaksummitlabs.com</a>. A real person reads it.</p>
+            </div>
+
+            <div class="card" id="privacy">
+                <h2>Privacy policy</h2>
+                <p>Last updated: 2026-10-11</p>
+                <p>RingHealth is a private, on-device companion app for compatible Bluetooth smart rings. It has no accounts, no servers, no advertising, and no analytics. This page explains exactly what the app touches and where it goes.</p>
+                <p><strong>Short version: your data stays on your iPhone. RingHealth never sends it to the developer or to anyone else.</strong></p>
+                <h3>What RingHealth reads from your ring</h3>
+                <p>When you pair a compatible ring over Bluetooth, the app reads the sensor data the ring records:</p>
+                <ul>
+                <li>heart rate, heart rate variability, blood oxygen, respiratory rate, blood pressure estimates, and stress readings</li>
+                <li>step counts and activity</li>
+                <li>sleep sessions and sleep stages</li>
+                <li>battery level and firmware version of the ring</li>
+                <li>the ring's Bluetooth identifier, saved so the app can reconnect to your ring automatically</li>
+                </ul>
+                <p>You can also enter a few details yourself: age, sex, weight, and an optional blood pressure calibration reading from your own cuff. Habit tags and workout sessions you record are stored too.</p>
+                <h3>Where the data is stored</h3>
+                <ul>
+                <li>All of the above is stored <strong>only on your device</strong>, in the app's own database. The database files use iOS Data Protection (they are encrypted whenever the device is locked and the files are closed).</li>
+                <li>Small settings (your profile, alert thresholds, night mode times, calibration) are stored in the app's on-device preferences.</li>
+                <li>A small summary (for example your latest health score) is shared with the RingHealth home screen widget and the RingHealth Apple Watch app on your own devices. The widget uses an on-device app group. The Watch app is fed by Apple's on-device WatchConnectivity link. Neither involves any server.</li>
+                </ul>
+                <p>RingHealth makes <strong>no network connections</strong>. It contains no code that contacts the internet, and it includes no third-party SDKs: no analytics, no crash reporting, no advertising, no tracking. The only web links in the app (this page and the list of compatible rings) open in Safari when you tap them; the app itself sends nothing.</p>
+                <h3>Apple Health (HealthKit)</h3>
+                <p>If you allow it, RingHealth connects to Apple Health.</p>
+                <ul>
+                <li><strong>Written to Apple Health (with your permission):</strong> heart rate, blood pressure, blood oxygen, respiratory rate, heart rate variability, sleep stages, workouts and active energy you record with the app. Steps are not written: your iPhone and Apple Watch already count them.</li>
+                <li><strong>Read from Apple Health (with your permission):</strong> body weight, resting heart rate, active energy, workouts, and Apple Watch sleeping wrist temperature, so they can be shown next to your ring's data.</li>
+                </ul>
+                <p>You choose each category in the iOS permission sheet and can change it at any time in Settings &gt; Health &gt; Data Access &amp; Devices &gt; RingHealth. The app keeps working with Health access denied.</p>
+                <p>Health data is used only to show you your own information inside the app. It is never used for advertising, marketing, or data mining, and it is never shared with third parties. RingHealth does not use iCloud itself. Your data only leaves the app as a file you export or a backup folder you choose (see Backups).</p>
+                <h3>Notifications</h3>
+                <p>If you enable alerts, RingHealth schedules <strong>local</strong> notifications on your phone (for example when two readings in a row fall outside limits you set). They are generated on the device. Nothing is sent to a notification server.</p>
+                <h3>Export and sharing</h3>
+                <p>RingHealth can create CSV, JSON, and PDF files of your data. This happens <strong>only when you tap an export or share button</strong>, and the file goes only where you send it using the standard iOS share sheet (Files, AirDrop, Mail, and so on). Once you share a file, the receiving app or person is governed by their own policies.</p>
+                <h3>Backups</h3>
+                <p>You can choose a folder in the Files app and RingHealth will save a copy of your history there once a day, as a single file, so you can restore it on a new phone. Where that folder lives (on the phone, on a drive, or in a cloud service you use) is your choice, and you can stop at any time. RingHealth never sends the file anywhere else.</p>
+                <p>If you use iCloud Backup or an encrypted Finder/iTunes backup for your whole device, the app's data may be included in that device backup, like any other app's data. That backup is controlled by your Apple settings, not by RingHealth.</p>
+                <h3>Third parties</h3>
+                <p>None. RingHealth has no developer-operated servers and shares nothing with third parties. Apple's own frameworks (Bluetooth, HealthKit, notifications) operate on your device under your permissions.</p>
+                <h3>Children</h3>
+                <p>RingHealth is not directed to children under 13 and collects nothing from anyone.</p>
+                <h3>Your controls and deleting your data</h3>
+                <ul>
+                <li><strong>Stop collecting:</strong> tap Disconnect Ring in the app Settings, or turn off Bluetooth for the app in iOS Settings.</li>
+                <li><strong>Revoke Health access:</strong> Settings &gt; Health &gt; Data Access &amp; Devices &gt; RingHealth.</li>
+                <li><strong>Delete data stored by the app:</strong> delete the RingHealth app from your iPhone. This removes the app's database, preferences, and widget data. (Uninstalling also removes the data from the Watch app.)</li>
+                <li><strong>Delete data the app wrote to Apple Health:</strong> open the Health app, choose the data type (for example Heart Rate), then Show All Data, and delete entries. You can also delete by source under Profile &gt; Apps &gt; RingHealth &gt; Delete All Data from "RingHealth".</li>
+                <li><strong>Delete exports you made:</strong> delete the files from wherever you saved or sent them.</li>
+                <li><strong>Delete data on the ring:</strong> the ring's stored history is cleared after the app has safely saved it to your phone.</li>
+                </ul>
+                <h3>Not medical advice</h3>
+                <p>RingHealth is for general wellness and informational use. It is not a medical device, does not diagnose, treat, cure, or prevent any condition, and its readings and estimates (including blood pressure, blood oxygen, sleep, and scores) can be wrong. Do not use it to make medical decisions. Talk to a qualified healthcare professional about health concerns, and call your local emergency number in an emergency.</p>
+                <h3>Changes to this policy</h3>
+                <p>If this policy changes, the new version will be posted at the same address with a new date. Because the app collects nothing off your device, a material change would require an app update that you would have to install.</p>
+                <h3>Contact</h3>
+                <p>Questions: <a href="mailto:support@peaksummitlabs.com">support@peaksummitlabs.com</a></p>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="https://peaksummitlabs.com">Peak Summit Labs</a>
+                <a href="https://myronkoch.dev">Myron Koch</a>
+                <a href="https://operationalsemantics.dev">Blog</a>
+                <a href="https://www.linkedin.com/company/peak-summit-labs">LinkedIn</a>
+                <a href="mailto:support@peaksummitlabs.com">Contact</a>
+            </div>
+            <p class="footer-copy">RingHealth is free and makes no network requests. &copy; 2026 Peak Summit Labs.</p>
+        </div>
+    </footer>
+
+    <script>
+        const nav=document.getElementById('nav');
+        window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>50)});
+    </script>
+</body>
+</html>
