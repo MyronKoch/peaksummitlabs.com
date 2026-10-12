@@ -42,6 +42,7 @@
     .section-label{font-size:.8rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
     .hero h1{font-size:3.1rem;font-weight:800;letter-spacing:-.03em;line-height:1.1;margin-bottom:18px}
     .hero h1 span{background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .app-icon{display:block;width:96px;height:96px;border-radius:22px;margin:0 auto 20px;box-shadow:0 8px 24px rgba(0,0,0,.35)}
     .hero-sub{font-size:1.12rem;color:var(--text2);max-width:620px;margin:0 auto;line-height:1.7}
 
     .papers{padding:48px 0 24px}
@@ -119,6 +120,7 @@
     <section class="hero">
         <div class="container">
             <p class="section-label">Free iPhone app</p>
+            <img class="app-icon" src="/ringhealth/icon.png" width="96" height="96" alt="RingHealth app icon">
             <h1>Your ring. Your phone. <span>Nobody else.</span></h1>
             <p class="hero-sub">RingHealth is a free, private companion app for low-cost SmartHealth smart rings. Heart rate, sleep, blood oxygen estimates, breathing, HRV and stress, read straight from the ring and kept on your iPhone. No account, no cloud, no tracking.</p>
         </div>
@@ -139,10 +141,17 @@
                 <table>
                     <tr><th>Ring</th><th>Status</th><th>Notes</th></tr>
                     <tr><td>TK5</td><td class="ok">Tested</td><td>Our daily ring. Sleep, heart rate, blood oxygen, breathing, HRV, stress, steps.</td></tr>
-                    <tr><td>R10M, R11M / R99, R21M</td><td class="maybe">Reported working</td><td>Same platform per other developers; we are buying units to confirm.</td></tr>
+                    <tr><td>R10M, R11M / R99, R20, R21M</td><td class="maybe">Reported working</td><td>Same platform per other developers; we are buying units to confirm.</td></tr>
                     <tr><td>Rings whose listing says "SmartHealth"</td><td class="maybe">Likely</td><td>Check the listing for the app name before you buy.</td></tr>
+                    <tr><td>SR08 (JRing app)</td><td class="no">Not compatible yet</td><td>"SR08" is a shared label: some use the JRing app, others QRing. Support for the JRing version is being worked on.</td></tr>
                     <tr><td>QRing / Colmi, Jring / KeepFit, RWfit, LuckRing / TK18, Lefun</td><td class="no">Not compatible</td><td>Different protocols, even when the ring looks identical.</td></tr>
                 </table>
+                <h3>How to check before you buy</h3>
+                <ul>
+                    <li>The listing, the box or the manual names the <strong>SmartHealth</strong> app. Many listings hide the app name in the photos or the questions section, so look there too.</li>
+                    <li>Skip listings that name QRing, Da Rings, Colmi Fit, JRing, KeepFit, RWfit, Fitpro, Wearfit or HBand.</li>
+                    <li>If a ring turns out not to be compatible, RingHealth tells you the first time it connects.</li>
+                </ul>
                 <p class="note">Buy links for tested rings will appear here once each listing has been checked with a real unit. Listings change often, so we only link to ones we have verified.</p>
             </div>
 
