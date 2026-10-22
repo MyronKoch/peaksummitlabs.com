@@ -43,6 +43,12 @@
     .hero h1{font-size:3.1rem;font-weight:800;letter-spacing:-.03em;line-height:1.1;margin-bottom:18px}
     .hero h1 span{background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
     .app-icon{display:block;width:96px;height:96px;border-radius:22px;margin:0 auto 20px;box-shadow:0 8px 24px rgba(0,0,0,.35)}
+    .hero-tag{font-size:1.6rem;font-weight:700;letter-spacing:-.02em;margin-bottom:14px}
+    .hero-tag span{background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .shots{display:flex;gap:16px;justify-content:center;align-items:flex-end;flex-wrap:wrap;margin:8px 0 32px}
+    .shots img{border-radius:14px;border:1px solid var(--border);box-shadow:0 8px 24px rgba(0,0,0,.35);height:auto}
+    .shots .mac{width:100%;max-width:640px}
+    .shots .phone{width:160px}
     .hero-sub{font-size:1.12rem;color:var(--text2);max-width:620px;margin:0 auto;line-height:1.7}
 
     .papers{padding:48px 0 24px}
@@ -119,14 +125,22 @@
 
     <section class="hero">
         <div class="container">
+            <img class="app-icon" src="/jans-recipes/icon-256.png" width="96" height="96" alt="Jan's Recipe Box app icon">
+            <h1>Jan's Recipe Box</h1>
+            <p class="hero-tag">Every recipe in one box. <span>Your box.</span></p>
             <p class="section-label">Free for iPhone, iPad and Mac</p>
-            <h1>Every recipe in one box. <span>Your box.</span></h1>
             <p class="hero-sub">Jan's Recipe Box keeps your recipes in one place, on your iPhone, iPad and Mac, with a Chrome extension that clips a recipe from any website in one click. Everything is saved in your own Google Drive. We never see it.</p>
         </div>
     </section>
 
     <section class="doc">
         <div class="container">
+
+            <div class="shots">
+                <img class="mac" src="/jans-recipes/mac-library.jpg" width="1400" height="875" alt="Jan's Recipe Box on a Mac, showing all recipes with photos and categories" loading="lazy">
+                <img class="phone" src="/jans-recipes/iphone-library.jpg" width="323" height="700" alt="Jan's Recipe Box on an iPhone, showing the recipe library" loading="lazy">
+                <img class="phone" src="/jans-recipes/iphone-cook.jpg" width="323" height="700" alt="Cook Mode on an iPhone, showing one step in large text" loading="lazy">
+            </div>
 
             <div class="card" id="about">
                 <h2>What it does</h2>
@@ -136,8 +150,12 @@
                     <li><strong>What can I make?</strong> Search by the ingredients you have, several at once.</li>
                     <li><strong>Categories and servings.</strong> Sort recipes your way and scale any recipe up or down.</li>
                     <li><strong>Share a recipe card</strong> with a friend.</li>
+                    <li><strong>YouTube cooking videos.</strong> Click the Chrome button on a cooking video and the app makes the recipe: from the creator's written recipe, the video's description, or, on devices with Apple Intelligence, from what's said in the video, written on your device. A "Watch the Video" button stays on the recipe.</li>
+                    <li><strong>From a Photo.</strong> Take a picture of a recipe in a newspaper or a printout. The app reads it on your device, and you check the amounts before saving. The photo becomes the recipe's picture.</li>
+                    <li><strong>My Websites.</strong> Keep your favorite recipe sites one click away.</li>
+                    <li><strong>Sample recipes</strong> in every category, so a new box isn't empty. Delete them anytime.</li>
                 </ul>
-                <p class="note">Built by Myron for his mom Jan's birthday. It's free, with no ads.</p>
+                <p class="note">Built by Myron for his mom Jan's 82nd birthday. It's free, with no ads.</p>
             </div>
 
             <div class="card" id="chrome">
@@ -159,11 +177,17 @@
             <div class="card" id="support">
                 <h2>Support</h2>
                 <h3>Getting it</h3>
-                <p>The app is in testing on Apple's TestFlight for iPhone, iPad and Mac, with an App Store release to follow. The Chrome extension adds a button to Chrome that saves the recipe on the page you're looking at.</p>
+                <p>Jan's Recipe Box is with Apple for review now. When it's approved, search the App Store for <strong>Jan's Recipe Box</strong> (iPhone, iPad and Mac). The Chrome extension adds a button to Chrome that saves the recipe on the page you're looking at.</p>
                 <h3>Where are my recipes?</h3>
                 <p>In a folder called <strong>Recipe Box</strong> in your own Google Drive. The app also keeps a copy on your device so your recipes and photos work offline.</p>
                 <h3>A recipe didn't clip properly</h3>
                 <p>Some sites lay recipes out in unusual ways. Email us the page address and we'll take a look.</p>
+                <h3>Saving a YouTube recipe</h3>
+                <p>On the YouTube video's page, click the Recipe Box button, then open the recipe in the app. If the app asks you to check the amounts, look them over before you save.</p>
+                <h3>Adding a recipe from a photo</h3>
+                <p>Choose <strong>Add a Recipe</strong>, then <strong>From a Photo</strong>. Take a picture or pick one, then check the amounts before you save.</p>
+                <h3>I don't see my recipes on my iPad</h3>
+                <p>Sign in with the same Google account you use on your other devices, then tap <strong>Update My Recipes</strong>.</p>
                 <h3>Moving to a new device</h3>
                 <p>Install the app and sign in with the same Google account. Your recipes come back from your Drive.</p>
                 <h3>Contact</h3>
