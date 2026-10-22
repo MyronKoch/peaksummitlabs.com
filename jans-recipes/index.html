@@ -45,6 +45,18 @@
     .bday-note{font-size:1.15rem;color:#5c4636;max-width:580px;margin:0 auto 18px;line-height:1.7}
     .bday-sign{font-family:Georgia,'Times New Roman',serif;font-style:italic;font-size:1.5rem;color:#bf4d22}
     @media(max-width:768px){.bday{margin-top:84px}.bday-card{padding:36px 22px}.bday-card h2{font-size:2.4rem}.bday-love{font-size:1.35rem}}
+    .floaters{position:fixed;inset:0;pointer-events:none;z-index:50;overflow:hidden}
+    .floater{position:absolute;bottom:-90px;line-height:1;will-change:transform;animation:rise linear forwards}
+    .floater>span{display:inline-block;animation:sway ease-in-out infinite alternate}
+    @keyframes rise{from{transform:translateY(0)}to{transform:translateY(calc(-100vh - 180px))}}
+    @keyframes sway{from{transform:translateX(-22px) rotate(-8deg)}to{transform:translateX(22px) rotate(8deg)}}
+    .bday-card h2{animation:glow 2.6s ease-in-out infinite alternate}
+    @keyframes glow{from{text-shadow:0 0 0 rgba(191,77,34,0)}to{text-shadow:0 0 18px rgba(191,77,34,.35)}}
+    .bday-heart{display:inline-block;animation:beat 1.4s ease-in-out infinite}
+    @keyframes beat{0%,100%{transform:scale(1)}15%{transform:scale(1.25)}30%{transform:scale(1)}45%{transform:scale(1.18)}}
+    .confetti{position:absolute;top:-20px;width:10px;height:16px;border-radius:2px;animation:fall linear forwards}
+    @keyframes fall{0%{transform:translate(0,0) rotate(0)}100%{transform:translate(var(--dx),calc(100vh + 40px)) rotate(var(--rot))}}
+    @media(prefers-reduced-motion:reduce){.floaters{display:none}.bday-card h2,.bday-heart{animation:none}}
     .hero{padding:60px 0 40px;text-align:center;position:relative;overflow:hidden}
     .hero::before{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:800px;height:800px;background:radial-gradient(circle,var(--accent-glow) 0%,transparent 70%);pointer-events:none}
     .section-label{font-size:.8rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
@@ -135,7 +147,7 @@
         <div class="bday-card">
             <div class="bday-confetti" aria-hidden="true">🎉🎂🎉</div>
             <h2>Happy 82nd Birthday, Mom</h2>
-            <p class="bday-love">I love you so much. ❤️</p>
+            <p class="bday-love">I love you so much. <span class="bday-heart">❤️</span></p>
             <p class="bday-note">This recipe box is my gift to you: a home for all your recipes, the old favorites and the new ones, on your iPad, your phone and your computer. Thank you for every meal, every recipe and every bit of love you've cooked for us.</p>
             <p class="bday-sign">Love, Myron</p>
         </div>
@@ -266,7 +278,45 @@
         </div>
     </footer>
 
+    <div class="floaters" id="floaters" aria-hidden="true"></div>
     <script>
+        (function(){
+            var box=document.getElementById('floaters');
+            if(!box||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+            var items=['🎈','🎈','🎈','❤️','💕','💖','🎈','🌸','💐','🎉'];
+            function spawn(pre){
+                var el=document.createElement('div');el.className='floater';
+                var big=Math.random()<.5;
+                el.style.left=(Math.random()*94)+'vw';
+                el.style.fontSize=(big?44+Math.random()*28:26+Math.random()*16)+'px';
+                var dur=9+Math.random()*7;el.style.animationDuration=dur+'s';
+                var head=pre?Math.random()*dur*0.8:0;if(head)el.style.animationDelay=(-head)+'s';
+                var inner=document.createElement('span');
+                inner.textContent=items[Math.floor(Math.random()*items.length)];
+                inner.style.animationDuration=(1.8+Math.random()*1.6)+'s';
+                el.appendChild(inner);box.appendChild(el);
+                setTimeout(function(){el.remove()},(dur-head)*1000+200);
+            }
+            var colors=['#bf4d22','#f2a65a','#f7d06b','#e86a92','#7fb7e6','#9ccf7a','#c58fe0','#ff6b6b'];
+            function confetti(count){
+                for(var i=0;i<count;i++){
+                    var c=document.createElement('div');c.className='confetti';
+                    c.style.left=(Math.random()*100)+'vw';
+                    c.style.background=colors[Math.floor(Math.random()*colors.length)];
+                    if(Math.random()<.3)c.style.borderRadius='50%';
+                    var d=3.5+Math.random()*3;
+                    c.style.animationDuration=d+'s';
+                    c.style.animationDelay=(Math.random()*1.8)+'s';
+                    c.style.setProperty('--dx',(Math.random()*160-80)+'px');
+                    c.style.setProperty('--rot',(Math.random()*1080-540)+'deg');
+                    box.appendChild(c);
+                    (function(el,ms){setTimeout(function(){el.remove()},ms)})(c,(d+2)*1000);
+                }
+            }
+            confetti(160);setTimeout(function(){confetti(90)},2500);setInterval(function(){confetti(70)},15000);
+            for(var i=0;i<16;i++)spawn(true);
+            var n=0,t=setInterval(function(){spawn(false);if(++n>120){clearInterval(t);setInterval(function(){spawn(false)},2600)}},700);
+        })();
         const nav=document.getElementById('nav');
         window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>50)});
     </script>
