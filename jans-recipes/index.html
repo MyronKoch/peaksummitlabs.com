@@ -37,7 +37,15 @@
     .nav-link{color:var(--text2);font-size:.875rem;font-weight:500;transition:color .2s}
     .nav-link:hover{color:var(--text)}
 
-    .hero{padding:150px 0 40px;text-align:center;position:relative;overflow:hidden}
+    .bday{margin:96px auto 0;max-width:860px;padding:0 24px}
+    .bday-card{background:linear-gradient(160deg,#fbf3e4,#f1ebdd);color:#3a2a20;border-radius:28px;padding:48px 36px 44px;text-align:center;box-shadow:0 20px 60px rgba(191,77,34,.25);border:2px solid #e9c9a8;position:relative;overflow:hidden}
+    .bday-confetti{font-size:2.4rem;letter-spacing:.35em;margin-bottom:10px}
+    .bday-card h2{font-family:Georgia,'Times New Roman',serif;font-size:3.4rem;line-height:1.1;color:#bf4d22;font-weight:700;margin-bottom:16px}
+    .bday-love{font-family:Georgia,'Times New Roman',serif;font-size:1.65rem;color:#3a2a20;margin-bottom:14px}
+    .bday-note{font-size:1.15rem;color:#5c4636;max-width:580px;margin:0 auto 18px;line-height:1.7}
+    .bday-sign{font-family:Georgia,'Times New Roman',serif;font-style:italic;font-size:1.5rem;color:#bf4d22}
+    @media(max-width:768px){.bday{margin-top:84px}.bday-card{padding:36px 22px}.bday-card h2{font-size:2.4rem}.bday-love{font-size:1.35rem}}
+    .hero{padding:60px 0 40px;text-align:center;position:relative;overflow:hidden}
     .hero::before{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:800px;height:800px;background:radial-gradient(circle,var(--accent-glow) 0%,transparent 70%);pointer-events:none}
     .section-label{font-size:.8rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
     .hero h1{font-size:3.1rem;font-weight:800;letter-spacing:-.03em;line-height:1.1;margin-bottom:18px}
@@ -122,6 +130,16 @@
             </div>
         </div>
     </nav>
+
+    <section class="bday" aria-label="Birthday message">
+        <div class="bday-card">
+            <div class="bday-confetti" aria-hidden="true">🎉🎂🎉</div>
+            <h2>Happy 82nd Birthday, Mom</h2>
+            <p class="bday-love">I love you so much. ❤️</p>
+            <p class="bday-note">This recipe box is my gift to you: a home for all your recipes, the old favorites and the new ones, on your iPad, your phone and your computer. Thank you for every meal, every recipe and every bit of love you've cooked for us.</p>
+            <p class="bday-sign">Love, Myron</p>
+        </div>
+    </section>
 
     <section class="hero">
         <div class="container">
